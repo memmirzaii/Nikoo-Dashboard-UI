@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدیریت کاربران - Nikoo AI Dashboard</title>
+  <meta name="description" content="مدیریت کاربران، نقش‌ها و مجوزها در سیستم Nikoo AI">
+  <link rel="stylesheet" href="../assets/css/output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazir:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="../assets/js/main.js" defer></script>
+</head>
+<body class="bg-gray-50 font-sans">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-sm h-screen fixed left-0 top-0 z-40">
+    <div class="p-4 border-b border-gray-200">
+      <div class="flex items-center space-x-2">
+        <div class="w-8 h-8 bg-brand-primary rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-lg">N</span>
+        </div>
+        <span class="text-xl font-bold text-gray-900">Nikoo AI</span>
+      </div>
+    </div>
+    
+    <nav class="p-4">
+      <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">منوی اصلی</h3>
+      <ul class="space-y-1">
+        <li>
+          <a href="dashboard.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+            </svg>
+            <span>داشبورد</span>
+          </a>
+        </li>
+        <li>
+          <a href="projects.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+            </svg>
+            <span>مدیریت پروژه‌ها</span>
+          </a>
+        </li>
+        <li>
+          <a href="ai-assistant.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+            <span>دستیار هوش مصنوعی</span>
+          </a>
+        </li>
+        <li>
+          <a href="crm.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>سیستم CRM</span>
+          </a>
+        </li>
+        <li>
+          <a href="shop.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m6-5v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6m8 0V9a2 2 0 00-2-2H9a2 2 0 00-2 2v4.01"></path>
+            </svg>
+            <span>پنل فروشگاه</span>
+          </a>
+        </li>
+        <li>
+          <a href="financial.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+            <span>سیستم مالی</span>
+          </a>
+        </li>
+        <li>
+          <a href="users.html" class="flex items-center space-x-3 px-4 py-2 text-brand-primary bg-brand-primary/10 rounded-lg font-medium">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+            <span>مدیریت کاربران</span>
+          </a>
+        </li>
+        <li>
+          <a href="settings.html" class="flex items-center space-x-3 px-4 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg font-medium transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <span>تنظیمات</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="min-h-screen mr-64 bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm border-b sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <h1 class="text-lg font-semibold text-gray-900">مدیریت کاربران</h1>
+            <p class="text-sm text-gray-500 mr-4">مدیریت کاربران، نقش‌ها و مجوزهای دسترسی</p>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button class="px-4 py-2 rounded-lg font-medium bg-brand-primary text-white hover:bg-brand-primary/90 transition-colors flex items-center space-x-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+              </svg>
+              <span>کاربر جدید</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Users Content -->
+    <div class="p-6">
+      <!-- Users Stats -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+        <div class="card">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 bg-brand-primary/10 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">+۱۲%</span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-1">۱۲۸</h3>
+          <p class="text-sm text-gray-500">کل کاربران</p>
+        </div>
+
+        <div class="card">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 bg-success-500/10 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-success-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">+۸%</span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-1">۴۵</h3>
+          <p class="text-sm text-gray-500">کاربران فعال</p>
+        </div>
+
+        <div class="card">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 bg-warning-500/10 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-warning-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded-full">-۳%</span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-1">۱۲</h3>
+          <p class="text-sm text-gray-500">کاربران غیرفعال</p>
+        </div>
+
+        <div class="card">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 bg-info-500/10 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-info-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
+            </div>
+            <span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">+۱۵%</span>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-1">۷</h3>
+          <p class="text-sm text-gray-500">نقش‌های سفارشی</p>
+        </div>
+      </div>
+
+      <!-- Users Tabs -->
+      <div class="card mb-6">
+        <div class="flex space-x-1 p-1 bg-gray-100 rounded-lg">
+          <button class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition-colors bg-brand-primary text-white" data-tab="all">
+            همه کاربران
+          </button>
+          <button class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition-colors text-gray-600 hover:text-gray-900" data-tab="active">
+            کاربران فعال
+          </button>
+          <button class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition-colors text-gray-600 hover:text-gray-900" data-tab="inactive">
+            کاربران غیرفعال
+          </button>
+          <button class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition-colors text-gray-600 hover:text-gray-900" data-tab="roles">
+            نقش‌ها
+          </button>
+        </div>
+      </div>
+
+      <!-- Users Table -->
+      <div class="card">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="text-lg font-semibold text-gray-900">لیست کاربران</h3>
+          <div class="flex items-center space-x-2">
+            <select class="input-field w-48">
+              <option>همه نقش‌ها</option>
+              <option>مدیر سیستم</option>
+              <option>مدیر مالی</option>
+              <option>کاربر عادی</option>
+              <option>مهمان</option>
+            </select>
+            <button class="px-4 py-2 rounded-lg font-medium border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors">
+              فیلتر
+            </button>
+          </div>
+        </div>
+
+        <!-- Search and Actions -->
+        <div class="flex flex-col md:flex-row items-center justify-between mb-6 space-y-4 md:space-y-0">
+          <div class="relative w-full md:w-96">
+            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+            <input 
+              type="text" 
+              class="input-field pl-10 w-full"
+              placeholder="جستجوی کاربران..."
+            />
+          </div>
+          <div class="flex items-center space-x-2">
+            <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead class="bg-gray-50 text-gray-700 font-medium">
+              <tr>
+                <th class="px-4 py-3 text-right">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </th>
+                <th class="px-4 py-3 text-right">کاربر</th>
+                <th class="px-4 py-3 text-right">ایمیل</th>
+                <th class="px-4 py-3 text-right">نقش</th>
+                <th class="px-4 py-3 text-right">وضعیت</th>
+                <th class="px-4 py-3 text-right">آخرین ورود</th>
+                <th class="px-4 py-3 text-right">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center text-white text-xs font-bold">مدیر</div>
+                    <div>
+                      <p class="font-medium text-gray-900">محمد امیری</p>
+                      <p class="text-xs text-gray-500">مدیر سیستم</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3">m.amiri@nikoo.ai</td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-purple-600 bg-purple-100 px-2 py-1 rounded-full">مدیر سیستم</span></td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">فعال</span></td>
+                <td class="px-4 py-3">۱۴۰۳/۰۸/۰۱، ۰۹:۳۰</td>
+                <td class="px-4 py-3">
+                  <div class="flex space-x-1">
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-danger-500 hover:bg-danger-50 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-success-500 rounded-full flex items-center justify-center text-white text-xs font-bold">س. ر</div>
+                    <div>
+                      <p class="font-medium text-gray-900">سارا رضایی</p>
+                      <p class="text-xs text-gray-500">مدیر مالی</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3">s.rezaei@nikoo.ai</td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-blue-600 bg-blue-100 px-2 py-1 rounded-full">مدیر مالی</span></td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">فعال</span></td>
+                <td class="px-4 py-3">۱۴۰۳/۰۸/۰۱، ۰۸:۴۵</td>
+                <td class="px-4 py-3">
+                  <div class="flex space-x-1">
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-danger-500 hover:bg-danger-50 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-warning-500 rounded-full flex items-center justify-center text-white text-xs font-bold">ع. ک</div>
+                    <div>
+                      <p class="font-medium text-gray-900">علی کریمی</p>
+                      <p class="text-xs text-gray-500">توسعه‌دهنده</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3">a.karimi@nikoo.ai</td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-orange-600 bg-orange-100 px-2 py-1 rounded-full">توسعه‌دهنده</span></td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">فعال</span></td>
+                <td class="px-4 py-3">۱۴۰۳/۰۷/۳۰، ۱۴:۲۰</td>
+                <td class="px-4 py-3">
+                  <div class="flex space-x-1">
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-danger-500 hover:bg-danger-50 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-200 hover:bg-gray-50">
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-gray-600 text-xs font-bold">ف. م</div>
+                    <div>
+                      <p class="font-medium text-gray-900">فاطمه محمدی</p>
+                      <p class="text-xs text-gray-500">کاربر عادی</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3">f.mohammadi@nikoo.ai</td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-gray-600 bg-gray-100 px-2 py-1 rounded-full">کاربر عادی</span></td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-green-600 bg-green-100 px-2 py-1 rounded-full">فعال</span></td>
+                <td class="px-4 py-3">۱۴۰۳/۰۷/۲۸، ۱۰:۱۵</td>
+                <td class="px-4 py-3">
+                  <div class="flex space-x-1">
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-danger-500 hover:bg-danger-50 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 py-3">
+                  <input type="checkbox" class="rounded border-gray-300 text-brand-primary focus:ring-brand-primary">
+                </td>
+                <td class="px-4 py-3">
+                  <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-danger-500 rounded-full flex items-center justify-center text-white text-xs font-bold">ح. ع</div>
+                    <div>
+                      <p class="font-medium text-gray-900">حسین علیزاده</p>
+                      <p class="text-xs text-gray-500">مهمان</p>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-4 py-3">h.alizadeh@guest.com</td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-red-600 bg-red-100 px-2 py-1 rounded-full">مهمان</span></td>
+                <td class="px-4 py-3"><span class="text-xs font-medium text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">غیرفعال</span></td>
+                <td class="px-4 py-3">۱۴۰۲/۱۲/۱۵</td>
+                <td class="px-4 py-3">
+                  <div class="flex space-x-1">
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-brand-primary hover:bg-brand-primary/10 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                      </svg>
+                    </button>
+                    <button class="p-1.5 rounded-lg text-gray-500 hover:text-danger-500 hover:bg-danger-50 transition-colors">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="flex items-center justify-between mt-6">
+          <p class="text-sm text-gray-500">نمایش ۱ تا ۵ از ۱۲۸ کاربر</p>
+          <div class="flex items-center space-x-2">
+            <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors disabled:opacity-50" disabled>
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button class="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 transition-colors">
+              <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t p-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between">
+          <p class="text-sm text-gray-500">© ۱۴۰۳ Nikoo AI. تمام حقوق محفوظ است.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-sm text-gray-500 hover:text-gray-700">قراردادها</a>
+            <a href="#" class="text-sm text-gray-500 hover:text-gray-700">حریم خصوصی</a>
+            <a href="#" class="text-sm text-gray-500 hover:text-gray-700">پشتیبان</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Tab switching
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('[data-tab]').forEach(button => {
+        button.addEventListener('click', function() {
+          document.querySelectorAll('[data-tab]').forEach(btn => {
+            btn.classList.remove('bg-brand-primary', 'text-white');
+            btn.classList.add('text-gray-600');
+          });
+          this.classList.add('bg-brand-primary', 'text-white');
+          this.classList.remove('text-gray-600');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
