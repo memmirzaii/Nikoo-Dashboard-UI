@@ -1,0 +1,123 @@
+# Nikoo AI Dashboard - .gitignore
+# شناسه سند: NIKOO-MVP-TECH-001
+# نسخه: 1.0
+
+# سیستم عامل
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build
+.dist/
+dist/
+build/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# محیط توسعه
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# فایل‌های محرمانه
+*.key
+*.pem
+*.crt
+*.pfx
+
+# فایل‌های پیکربندی محلی
+.npmrc
+.yarnrc
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# فایل‌های موقت هارنس
+.harness-temp/
+.harness-cache/
+
+# گزارش‌ها
+reports/
+audit-reports/
+qa-reports/
+
+# فایل‌های ZIP
+*.zip
+releases/
+
+# فایل‌های تست
+coverage/
+.nyc_output/
+
+# فایل‌های Playwright
+playwright-report/
+test-results/
+
+# فایل‌های Tailwind
+assets/css/output.css.map
+
+# فایل‌های Live Server
+.live-server-*
+
+# فایل‌های Docker
+docker-compose.override.yml
+
+# فایل‌های Local History
+.history/
+
+# فایل‌های Backup
+*.bak
+*.backup
+
+# فایل‌های Cache
+.cache/
+*.cache
+
+# فایل‌های IDE خاص
+*.iml
+*.ipr
+*.iws
+
+# فایل‌های System
+*.dll
+*.exe
+*.so
+*.dylib
+
+# فایل‌های Test
+__snapshots__/
+
+# فایل‌های Debug
+*.dbg
+*.pdb

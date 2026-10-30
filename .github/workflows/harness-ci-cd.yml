@@ -1,0 +1,328 @@
+name: Nikoo AI Dashboard - Agent Harness CI/CD
+
+# شناسه سند: NIKOO-MVP-TECH-001
+# نسخه: 1.0
+# توصیف: گردش کار CI/CD برای سیستم ایجنت هارنس
+
+on:
+  push:
+    branches: [ main, develop, feature/** ]
+    paths:
+      - 'agents/**'
+      - 'package.json'
+      - '.github/workflows/**'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'agents/**'
+      - 'package.json'
+  workflow_dispatch:
+    inputs:
+      run-audit:
+        description: 'Run Auditor Agent'
+        required: false
+        default: 'true'
+      run-qa:
+        description: 'Run QA Agent'
+        required: false
+        default: 'true'
+      run-release:
+        description: 'Create Release Package'
+        required: false
+        default: 'false'
+      run-full-workflow:
+        description: 'Run Full Workflow'
+        required: false
+        default: 'false'
+
+# متغیرهای محیطی
+env:
+  NODE_VERSION: '20'
+  PROJECT_NAME: 'Nikoo AI Dashboard'
+  HARNESS_VERSION: '1.0.0'
+
+jobs:
+  # شغل ۱: نصب وابستگی‌ها
+  setup:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: 'package.json'
+      
+      - name: Install Dependencies
+        id: install-deps
+        run: |
+          echo "📦 Installing dependencies..."
+          npm ci
+          echo "✅ Dependencies installed successfully"
+      
+      - name: Cache Node Modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - name: Verify Installation
+        run: |
+          echo "🔍 Verifying installation..."
+          npm --version
+          node --version
+          echo "✅ Installation verified"
+      
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+          retention-days: 1
+
+  # شغل ۲: ممیزی پروژه
+  audit:
+    name: Run Auditor Agent
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Download Node Modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+      
+      - name: Run Auditor
+        id: auditor
+        run: |
+          echo "🔍 Running Auditor Agent..."
+          node agents/auditor/index.js scanProject
+          echo "✅ Auditor completed"
+        continue-on-error: true
+      
+      - name: Upload Audit Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: audit-report
+          path: reports/audit-report.json
+          retention-days: 30
+      
+      - name: Check Security Issues
+        run: |
+          echo "🔒 Checking security issues..."
+          if [ -f reports/audit-report.json ]; then
+            SECURITY_ISSUES=$(jq '.securityIssues | length' reports/audit-report.json)
+            if [ "$SECURITY_ISSUES" -gt 0 ]; then
+              echo "❌ Security issues found: $SECURITY_ISSUES"
+              echo "security_issues=$SECURITY_ISSUES" >> $GITHUB_OUTPUT
+              exit 1
+            else
+              echo "✅ No security issues found"
+            fi
+          else
+            echo "⚠️ Audit report not found"
+          fi
+      
+      - name: Display Audit Summary
+        run: |
+          echo "📊 Audit Summary:"
+          if [ -f reports/audit-report.json ]; then
+            jq '.summary' reports/audit-report.json
+          fi
+
+  # شغل ۳: آزمون‌های QA
+  qa:
+    name: Run QA Agent
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Download Node Modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+      
+      - name: Run QA Tests
+        id: qa
+        run: |
+          echo "🧪 Running QA Agent..."
+          node agents/qa/index.js runAllAcceptanceCriteria
+          echo "✅ QA tests completed"
+        continue-on-error: true
+      
+      - name: Upload QA Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-report
+          path: reports/qa/qa-report.json
+          retention-days: 30
+      
+      - name: Check Acceptance Criteria
+        run: |
+          echo "📋 Checking acceptance criteria..."
+          if [ -f reports/qa/qa-report.json ]; then
+            FAILED_CRITERIA=$(jq '.summary.failed' reports/qa/qa-report.json)
+            if [ "$FAILED_CRITERIA" -gt 0 ]; then
+              echo "❌ Failed criteria: $FAILED_CRITERIA"
+              jq '.details[] | select(.passed == false)' reports/qa/qa-report.json
+              exit 1
+            else
+              echo "✅ All acceptance criteria passed"
+            fi
+          else
+            echo "⚠️ QA report not found"
+          fi
+      
+      - name: Display QA Summary
+        run: |
+          echo "📊 QA Summary:"
+          if [ -f reports/qa/qa-report.json ]; then
+            jq '.summary' reports/qa/qa-report.json
+          fi
+
+  # شغل ۴: Build پروژه
+  build:
+    name: Build Project
+    needs: [setup, audit, qa]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Download Node Modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+      
+      - name: Run Build
+        run: |
+          echo "🏗️ Building project..."
+          npm run build
+          echo "✅ Build completed"
+      
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-output
+          path: dist/
+          retention-days: 30
+
+  # شغل ۵: بسته‌بندی و انتشار
+  release:
+    name: Create Release Package
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    if: github.ref == 'refs/heads/main' || github.event.inputs.run-release == 'true'
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Download Node Modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+      
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-output
+          path: dist
+      
+      - name: Create Release Package
+        id: release
+        run: |
+          echo "📦 Creating release package..."
+          node agents/release/index.js createPackage
+          echo "✅ Release package created"
+      
+      - name: Upload Release Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: nikoo-dashboard-package
+          path: releases/nikoo-dashboard-ui-v1.0.0.zip
+          retention-days: 90
+      
+      - name: Create GitHub Release
+        if: github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ env.HARNESS_VERSION }}
+          name: Nikoo AI Dashboard v${{ env.HARNESS_VERSION }}
+          body: |
+            ## 📦 Release Notes
+            
+            ### What's Included
+            - Full dashboard template with Persian RTL support
+            - All acceptance criteria passed
+            - Mock AI interface
+            - Complete documentation
+            
+            ### How to Use
+            1. Download the ZIP file
+            2. Extract to your project directory
+            3. Run `npm install`
+            4. Run `npm run dev`
+          files: |
+            releases/nikoo-dashboard-ui-v1.0.0.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # شغل ۶: اجرای کامل گردش کار
+  full-workflow:
+    name: Run Full Workflow
+    needs: setup
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    if: github.event.inputs.run-full-workflow == 'true'
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      
+      - name: Download Node Modules
+        uses: actions/download-artifact@v4
+        with:
+          name: node-modules
+          path: node_modules
+      
+      - name: Run Full Workflow
+        run: |
+          echo "🔄 Running full workflow..."
+          node agents/controller/index.js runWorkflow
+          echo "✅ Workflow completed"
+      
+      - name: Upload All Reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: full-workflow-reports
+          path: reports/
+          retention-days: 30

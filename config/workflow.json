@@ -1,0 +1,326 @@
+{
+  "name": "Nikoo AI Dashboard MVP Workflow",
+  "version": "1.0.0",
+  "description": "گردش کار توسعه نسخه MVP بر اساس قرارداد فنی NIKOO-MVP-TECH-001",
+  "environment": "development",
+  "project": {
+    "name": "Nikoo AI Dashboard",
+    "id": "NIKOO-MVP-TECH-001",
+    "version": "1.0.0",
+    "language": "fa-IR",
+    "direction": "rtl"
+  },
+  "steps": [
+    {
+      "id": "step-0",
+      "name": "ممیزی اولیه (Auditor)",
+      "agent": "auditor",
+      "task": "scanProject",
+      "description": "بررسی اولیه پروژه توسط ایجنت ممیزی برای شناسایی مشکلات امنیتی و وابستگی‌ها",
+      "required": true,
+      "phase": "initialization",
+      "gate": {
+        "name": "Initial Audit Gate",
+        "description": "دروازه بررسی ممیزی اولیه",
+        "criteria": ["QA-09", "QA-11"],
+        "blocking": true
+      },
+      "timeout": 300000,
+      "retry": {
+        "maxAttempts": 1,
+        "delay": 5000
+      }
+    },
+    {
+      "id": "step-1",
+      "name": "تثبیت مشخصات (Controller)",
+      "agent": "controller",
+      "task": "validateSpecs",
+      "description": "تثبیت و اعتبارسنجی مشخصات پروژه بر اساس ماده ۳ قرارداد",
+      "required": true,
+      "phase": "specification",
+      "timeout": 60000,
+      "retry": {
+        "maxAttempts": 1,
+        "delay": 3000
+      }
+    },
+    {
+      "id": "step-2",
+      "name": "طراحی سیستم (UI Designer)",
+      "agent": "ui-designer",
+      "task": "createDesignSystem",
+      "description": "ایجاد سیستم طراحی شامل توکن‌ها، رنگ‌ها و الگوها بر اساس ماده ۵ قرارداد",
+      "required": true,
+      "phase": "design",
+      "timeout": 300000,
+      "retry": {
+        "maxAttempts": 2,
+        "delay": 10000
+      }
+    },
+    {
+      "id": "step-3",
+      "name": "توسعه رابط پایه (Frontend Dev)",
+      "agent": "frontend-dev",
+      "task": "createBaseStructure",
+      "description": "ایجاد ساختار پایه رابط کاربری شامل صفحات اصلی و کامپوننت‌های مشترک",
+      "required": true,
+      "phase": "development",
+      "timeout": 600000,
+      "retry": {
+        "maxAttempts": 2,
+        "delay": 15000
+      }
+    },
+    {
+      "id": "step-4",
+      "name": "توسعه ماژول‌ها (Frontend Dev + AI Interface)",
+      "agent": ["frontend-dev", "ai-interface"],
+      "task": "developModules",
+      "description": "توسعه ماژول‌ها و کامپوننت‌های خاص شامل داشبورد، مدیریت پروژه‌ها، دستیار هوش مصنوعی و غیره",
+      "required": true,
+      "phase": "development",
+      "parallel": true,
+      "timeout": 1200000,
+      "retry": {
+        "maxAttempts": 3,
+        "delay": 20000
+      }
+    },
+    {
+      "id": "step-5",
+      "name": "رابط هوش مصنوعی (AI Interface)",
+      "agent": "ai-interface",
+      "task": "createMockAdapter",
+      "description": "پیاده‌سازی آداپتر Mock برای رابط هوش مصنوعی بر اساس ماده ۳.۲ قرارداد",
+      "required": true,
+      "phase": "development",
+      "timeout": 300000,
+      "retry": {
+        "maxAttempts": 2,
+        "delay": 10000
+      }
+    },
+    {
+      "id": "step-6",
+      "name": "آزمون و اصلاح (QA Agent)",
+      "agent": "qa",
+      "task": "runAllAcceptanceCriteria",
+      "description": "اجرا آزمون‌ها و بررسی تمام معیارهای پذیرش بر اساس ماده ۸ قرارداد",
+      "required": true,
+      "phase": "testing",
+      "gate": {
+        "name": "QA Gate",
+        "description": "دروازه تضمین کیفیت",
+        "criteria": [
+          "QA-01",
+          "QA-02", 
+          "QA-03",
+          "QA-04",
+          "QA-05",
+          "QA-06",
+          "QA-07",
+          "QA-08",
+          "QA-10",
+          "QA-12"
+        ],
+        "blocking": true
+      },
+      "timeout": 600000,
+      "retry": {
+        "maxAttempts": 1,
+        "delay": 30000
+      }
+    },
+    {
+      "id": "step-7",
+      "name": "بسته‌بندی (Release Agent)",
+      "agent": "release",
+      "task": "createPackage",
+      "description": "بسته‌بندی نهایی پروژه شامل کد منبع، خروجی Build و مستندات",
+      "required": true,
+      "phase": "release",
+      "timeout": 300000,
+      "retry": {
+        "maxAttempts": 1,
+        "delay": 15000
+      }
+    },
+    {
+      "id": "step-8",
+      "name": "تأیید نهایی (Controller)",
+      "agent": "controller",
+      "task": "finalValidation",
+      "description": "تأیید نهایی تحویل و بررسی کامل تمام معیارها",
+      "required": true,
+      "phase": "validation",
+      "timeout": 60000,
+      "retry": {
+        "maxAttempts": 1,
+        "delay": 5000
+      }
+    }
+  ],
+  "gates": {
+    "Initial Audit Gate": {
+      "description": "بررسی ممیزی اولیه برای ادامه فرایند",
+      "criteria": ["QA-09", "QA-11"],
+      "blocking": true,
+      "requireAll": true
+    },
+    "QA Gate": {
+      "description": "دروازه تضمین کیفیت برای بررسی تمام معیارهای پذیرش",
+      "criteria": [
+        "QA-01",
+        "QA-02",
+        "QA-03", 
+        "QA-04",
+        "QA-05",
+        "QA-06",
+        "QA-07",
+        "QA-08",
+        "QA-10",
+        "QA-12"
+      ],
+      "blocking": true,
+      "requireAll": true
+    }
+  },
+  "acceptanceCriteria": {
+    "QA-01": {
+      "name": "Build Execution",
+      "description": "Build در محیط پاک با دستورالعمل مستند اجرا شود",
+      "agent": "release",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-02": {
+      "name": "Pages Loading",
+      "description": "تمام صفحات مصوب بدون خطای مسدودکننده باز شوند",
+      "agent": "qa",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-03": {
+      "name": "RTL Support",
+      "description": "متن‌ها، فرم‌ها، جداول و منوها درست نمایش داده شوند",
+      "agent": "qa",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-04": {
+      "name": "Responsiveness",
+      "description": "در عرض‌های ۳۶۰، ۷۶۸ و ۱۴۴۰ پیکسل بررسی شود",
+      "agent": "qa",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-05": {
+      "name": "Interactions",
+      "description": "جست‌وجو، فیلتر، فرم‌ها و کنترل‌های مصوب کار کنند",
+      "agent": "qa",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-06": {
+      "name": "State Handling",
+      "description": "حالت‌های خالی، انتظار و خطا در بخش‌های مربوط بررسی شوند",
+      "agent": "qa",
+      "required": true,
+      "severity": "medium"
+    },
+    "QA-07": {
+      "name": "AI Interface",
+      "description": "پیام و پاسخ آزمایشی و مسیر مدیریت خطا آزموده شود",
+      "agent": "qa",
+      "required": true,
+      "severity": "medium"
+    },
+    "QA-08": {
+      "name": "Accessibility",
+      "description": "پیمایش صفحه‌کلید و فوکوس کنترل‌ها بررسی شود",
+      "agent": "qa",
+      "required": true,
+      "severity": "medium"
+    },
+    "QA-09": {
+      "name": "Security",
+      "description": "هیچ کلید یا راز محرمانه‌ای در خروجی سمت کاربر وجود نداشته باشد",
+      "agent": "auditor",
+      "required": true,
+      "severity": "critical"
+    },
+    "QA-10": {
+      "name": "Delivery Package",
+      "description": "ZIP در محیط پاک استخراج و طبق README اجرا شود",
+      "agent": "release",
+      "required": true,
+      "severity": "high"
+    },
+    "QA-11": {
+      "name": "Licenses",
+      "description": "وابستگی‌ها و مجوزهای مربوط مستند شوند",
+      "agent": "auditor",
+      "required": true,
+      "severity": "medium"
+    },
+    "QA-12": {
+      "name": "Fixes Verification",
+      "description": "آزمون‌های ناموفق پس از اصلاح مجدداً اجرا شوند",
+      "agent": "qa",
+      "required": true,
+      "severity": "medium"
+    }
+  },
+  "phases": {
+    "initialization": {
+      "name": "ممیزی و آماده‌سازی",
+      "description": "مرحله آماده‌سازی اولیه پروژه",
+      "color": "#6366F1"
+    },
+    "specification": {
+      "name": "تثبیت مشخصات",
+      "description": "مرحله تثبیت مشخصات فنی",
+      "color": "#8B5CF6"
+    },
+    "design": {
+      "name": "طراحی",
+      "description": "مرحله طراحی سیستم بصری",
+      "color": "#EC4899"
+    },
+    "development": {
+      "name": "توسعه",
+      "description": "مرحله توسعه کامپوننت‌ها و صفحات",
+      "color": "#F59E0B"
+    },
+    "testing": {
+      "name": "آزمون",
+      "description": "مرحله آزمون و تضمین کیفیت",
+      "color": "#10B981"
+    },
+    "release": {
+      "name": "انتشار",
+      "description": "مرحله بسته‌بندی و انتشار",
+      "color": "#EF4444"
+    },
+    "validation": {
+      "name": "اعتبارسنجی",
+      "description": "مرحله تأیید نهایی",
+      "color": "#06B6D4"
+    }
+  },
+  "metadata": {
+    "contractId": "NIKOO-MVP-TECH-001",
+    "created": "2024-01-01",
+    "lastUpdated": "2024-01-01",
+    "author": "Nikoo Team",
+    "versionHistory": [
+      {
+        "version": "1.0.0",
+        "date": "2024-01-01",
+        "changes": "نسخه اولیه گردش کار"
+      }
+    ]
+  }
+}

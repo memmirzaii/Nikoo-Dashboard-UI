@@ -1,0 +1,100 @@
+{
+  "name": "nikoo-dashboard-ui",
+  "version": "1.0.0",
+  "description": "Nikoo AI Dashboard - MVP Version | Persian RTL Dashboard Template",
+  "main": "index.html",
+  "scripts": {
+    "dev": "concurrently \"npm run serve\" \"npm run watch:css\" \"npm run watch:js\"",
+    "serve": "live-server --port=3000 --host=0.0.0.0",
+    "build": "npm run build:css && npm run build:js && npm run copy:assets",
+    "build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
+    "build:js": "node scripts/bundle.js",
+    "watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
+    "watch:js": "nodemon --watch assets/js --exec \"npm run build:js\"",
+    "copy:assets": "copyfiles -u 1 \"assets/**/*\" dist/",
+    "lint": "eslint assets/js/**/*.js agents/**/*.js",
+    "lint:fix": "eslint --fix assets/js/**/*.js agents/**/*.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "audit": "node agents/auditor/index.js",
+    "qa": "node agents/qa/index.js",
+    "harness:start": "node agents/controller/index.js",
+    "harness:dev": "nodemon --watch agents --exec \"npm run harness:start\"",
+    "package": "npm run build && npm run test && node scripts/package.js",
+    "precommit": "lint-staged",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "dashboard",
+    "persian",
+    "rtl",
+    "tailwindcss",
+    "vanilla-js",
+    "ai-dashboard",
+    "template",
+    "admin-panel"
+  ],
+  "author": "Nikoo Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@types/node": "^20.10.6",
+    "autoprefixer": "^10.4.16",
+    "concurrently": "^8.2.2",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.0",
+    "live-server": "^1.2.2",
+    "nodemon": "^3.0.2",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "figlet": "^1.7.0",
+    "fs-extra": "^11.2.0",
+    "inquirer": "^9.2.12",
+    "ora": "^7.0.1",
+    "playwright": "^1.41.2",
+    "uuid": "^9.0.1",
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "lint-staged": {
+    "*.{js,json}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "agents/**/*.js",
+      "assets/js/**/*.js",
+      "!**/node_modules/**",
+      "!**/dist/**"
+    ]
+  },
+  "nikoo": {
+    "version": "1.0.0",
+    "type": "dashboard",
+    "language": "fa-IR",
+    "direction": "rtl",
+    "features": [
+      "responsive",
+      "persian-support",
+      "tailwindcss",
+      "vanilla-js",
+      "ai-interface-mock"
+    ]
+  }
+}
